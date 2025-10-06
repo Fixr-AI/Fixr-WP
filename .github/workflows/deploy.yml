@@ -26,10 +26,10 @@ jobs:
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.SFTP_HOST }}
-          username: ${{ secrets.SFTP_USERNAME }}
-          password: ${{ secrets.SFTP_PASSWORD }}
+          username: ${{ secrets.SFTP_USER }}
+          password: ${{ secrets.SFTP_PASS }}
           port: ${{ secrets.SFTP_PORT }}
           local_path: ./
-          remote_path: /wp-content/themes/theme-fixr-ai
+          remote_path: ${{ secrets.SFTP_REMOTE_PATH }}
           sftp_only: true
           sftpArgs: '-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
