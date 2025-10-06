@@ -1,0 +1,17 @@
+﻿# Node / tooling
+node_modules/
+*.log
+*.map
+# OS cruft
+.DS_Store
+Thumbs.db
+# Composer
+vendor/
+composer.lock
+# Env/config
+.env
+# Build artifacts
+/dist/
+/.cache/
+# WordPress
+screenshot.psd

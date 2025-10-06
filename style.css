@@ -1,0 +1,461 @@
+/*
+Theme Name: Fixr AI
+Theme URI: https://mike08241cbe467-lpsbf.wpcomstaging.com
+Author: Fixr AI
+Author URI: https://mike08241cbe467-lpsbf.wpcomstaging.com
+Description: Modern, dynamic WordPress theme for Fixr AI inspired by Apple, OpenAI, and Microsoft design. Features smooth animations, clean layout, and comprehensive SEO with JSON-LD schema.
+Version: 2.1.1
+Requires at least: 5.8
+Tested up to: 6.4
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: fixr-ai
+*/
+
+/* ========================================
+   CSS Variables - Modern Color Scheme
+   ======================================== */
+:root {
+    --primary-color: #0066FF;
+    --primary-dark: #0052CC;
+    --primary-light: #3385FF;
+    --secondary-color: #00D9FF;
+    --accent-color: #6C5CE7;
+    --text-dark: #1a1a1a;
+    --text-medium: #4a4a4a;
+    --text-light: #8a8a8a;
+    --bg-white: #ffffff;
+    --bg-light: #f5f7fa;
+    --bg-dark: #0a0a0a;
+    --border-color: #e5e7eb;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ========================================
+   Reset & Base Styles
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: var(--bg-white);
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--text-medium);
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* ========================================
+   Header & Navigation
+   ======================================== */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+    z-index: 1000;
+    transition: all var(--transition-base);
+}
+
+.site-header.scrolled {
+    box-shadow: var(--shadow-md);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-branding .site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.site-title a {
+    color: var(--text-dark);
+    transition: color var(--transition-fast);
+}
+
+.site-title a:hover {
+    color: var(--primary-color);
+}
+
+.main-navigation {
+    display: flex;
+    align-items: center;
+}
+
+.primary-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.primary-menu li a {
+    color: var(--text-medium);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color var(--transition-fast);
+}
+
+.primary-menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width var(--transition-base);
+}
+
+.primary-menu li a:hover {
+    color: var(--text-dark);
+}
+
+.primary-menu li a:hover::after {
+    width: 100%;
+}
+
+/* ========================================
+   Hero Section
+   ======================================== */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 4rem;
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--bg-white) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(0, 102, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(108, 92, 231, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-content {
+    max-width: 900px;
+    position: relative;
+    z-index: 1;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-title {
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-description {
+    font-size: 1.375rem;
+    color: var(--text-medium);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+}
+
+.hero-cta {
+    display: inline-flex;
+    gap: 1rem;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 14px rgba(0, 102, 255, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.4);
+    color: white;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* ========================================
+   Main Content
+   ======================================== */
+.site-content {
+    max-width: 1200px;
+    margin: 6rem auto 4rem;
+    padding: 0 2rem;
+    min-height: 50vh;
+}
+
+.content-section {
+    padding: 5rem 0;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+/* Entry Content Styles */
+.entry-header {
+    margin-bottom: 2rem;
+}
+
+.entry-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.entry-content {
+    font-size: 1.125rem;
+    line-height: 1.8;
+}
+
+.entry-content h2 {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.entry-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.entry-content ul,
+.entry-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.entry-content li {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+.site-footer {
+    background: var(--bg-dark);
+    color: var(--text-light);
+    padding: 4rem 2rem 2rem;
+    margin-top: 6rem;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-navigation {
+    margin-bottom: 3rem;
+}
+
+.footer-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+}
+
+.footer-menu li a {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    transition: color var(--transition-fast);
+}
+
+.footer-menu li a:hover {
+    color: white;
+}
+
+.site-info {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-info p {
+    color: var(--text-light);
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 768px) {
+    .header-container {
+        padding: 0 1rem;
+    }
+
+    .primary-menu {
+        display: none; /* Mobile menu would need JavaScript */
+    }
+
+    .hero-section {
+        padding: 6rem 1.5rem 3rem;
+    }
+
+    .hero-description {
+        font-size: 1.125rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .site-content {
+        padding: 0 1.5rem;
+        margin-top: 4rem;
+    }
+
+    .footer-menu {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
