@@ -3,12 +3,24 @@ on:
   push:
     branches: [ "main" ]
   workflow_dispatch:
+concurrency:
+  group: sftp-deploy-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Preflight list
+        run: |
+          pwd
+          ls -la
+          du -sh . || true
+          echo "Will deploy to: /wp-content/themes/theme-fixr-ai"
 
       - name: SFTP deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -17,7 +29,7 @@ jobs:
           username: ${{ secrets.SFTP_USERNAME }}
           password: ${{ secrets.SFTP_PASSWORD }}
           port: ${{ secrets.SFTP_PORT }}
-          local_path: ./*
+          local_path: ./
           remote_path: /wp-content/themes/theme-fixr-ai
           sftp_only: true
           exclude: ".git*,.github/**,**/*.map,node_modules/**"
